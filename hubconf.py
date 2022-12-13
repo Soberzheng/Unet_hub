@@ -2,8 +2,8 @@ dependencies = ["torch"]
 
 import torch
 
-from unet import UNet
-
+from model import UNET
+from model import DoubleConv
 
 def unet(pretrained=False, **kwargs):
     """
@@ -16,7 +16,7 @@ def unet(pretrained=False, **kwargs):
     model = UNet(**kwargs)
 
     if pretrained:
-        checkpoint = "https://github.com/Soberzheng/Unet_hub.git/releases/download/v1.0/unet-e012d006.pt"
+        checkpoint = "https://github.com/Soberzheng/Unet_hub/releases/download/v1.0/unet-e012d006.pt"
         state_dict = torch.hub.load_state_dict_from_url(checkpoint, progress=False, map_location='cpu')
         model.load_state_dict(state_dict)
 
